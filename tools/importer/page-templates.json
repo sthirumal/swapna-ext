@@ -1,0 +1,51 @@
+{
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": ["https://wknd-trendsetters.site"],
+      "description": "Fashion blog homepage with hero, features, articles, tabs, FAQ, and CTA sections",
+      "blocks": [
+        {
+          "name": "section-hero",
+          "section": "secondary",
+          "instances": ["header.section.secondary-section"]
+        },
+        {
+          "name": "columns-hero",
+          "instances": [".w-layout-grid.grid-layout.mobile-portrait-1-column.grid-gap-md.utility-margin-top-8rem"]
+        },
+        {
+          "name": "cards-features",
+          "instances": [".w-layout-grid.grid-layout.desktop-4-column.tablet-3-column"]
+        },
+        {
+          "name": "section-articles",
+          "section": "secondary",
+          "instances": ["section.section.secondary-section:nth-of-type(1)"]
+        },
+        {
+          "name": "cards-articles",
+          "instances": [".w-layout-grid.grid-layout.tablet-1-column.grid-gap-md"]
+        },
+        {
+          "name": "section-tabs",
+          "section": "inverse",
+          "instances": ["section.section.inverse-section"]
+        },
+        {
+          "name": "tabs-showcase",
+          "instances": [".w-tabs"]
+        },
+        {
+          "name": "section-faq",
+          "section": "secondary",
+          "instances": ["section.section.secondary-section:nth-of-type(2)"]
+        },
+        {
+          "name": "accordion-faq",
+          "instances": [".flex-vertical"]
+        }
+      ]
+    }
+  ]
+}
