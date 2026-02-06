@@ -1,6 +1,7 @@
 /*
  * WKND Trendsetters - Design System
  * Migrated from https://wknd-trendsetters.site
+ * swapna - Design tokens and button styles extracted from original site
  */
 
 :root {
@@ -66,6 +67,8 @@
 
   /* =========================
      BUTTONS
+     swapna - Button tokens extracted from https://wknd-trendsetters.site
+     Original: padding 16px 24px, border-radius 1600px (pill), font 16px/400 Instrument Sans
      ========================= */
   --button-padding: 16px 24px;
   --button-border-radius: 9999px;
@@ -228,8 +231,88 @@ a:hover {
 
 /* =========================
    BUTTONS
+   swapna - Button styles migrated from https://wknd-trendsetters.site
+   Original site uses: transparent bg, black 2px inset border, pill shape (border-radius: 1600px)
+   Primary: has yellow accent shadow (4px 4px 0 0 rgba(244, 254, 139, 0.5))
+   Secondary: inset border only, no yellow shadow
+   Font: Instrument Sans, 16px, weight 400, line-height 1.2
+   Hover: fills with black bg, white text
    ========================= */
 
+/* swapna - Button container: aligns primary + secondary buttons side by side (EDS pattern: p > strong > a + a) */
+p:has(> strong > a):has(> a) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* swapna - Primary button (EDS pattern: link wrapped in <strong>)
+   Original: transparent bg, black 2px inset border + yellow shadow offset 4px 4px
+   Examples on original site: "See more", "Browse", "Sign up", "Subscribe" */
+p > strong > a:any-link {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 8px 0;
+  border: none;
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  font-family: var(--body-font-family);
+  font-style: normal;
+  font-weight: var(--button-font-weight);
+  font-size: var(--button-font-size);
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  color: var(--text-color);
+  box-shadow: inset 0 0 0 2px var(--text-color), 4px 4px 0 0 var(--accent-color-shadow);
+  cursor: pointer;
+  transition: var(--button-transition);
+}
+
+/* swapna - Primary button hover: fills black, text turns white */
+p > strong > a:hover,
+p > strong > a:focus {
+  background-color: var(--text-color);
+  color: var(--text-color-inverse);
+  text-decoration: none;
+}
+
+/* swapna - Secondary button (EDS pattern: sibling <a> next to <strong><a>)
+   Original: same pill shape but only black 2px inset border, NO yellow shadow
+   Examples on original site: "Lookbook", "Join", "Connect" */
+p:has(> strong > a) > a:any-link:not(strong a) {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 8px 0;
+  border: none;
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  font-family: var(--body-font-family);
+  font-style: normal;
+  font-weight: var(--button-font-weight);
+  font-size: var(--button-font-size);
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  color: var(--text-color);
+  box-shadow: inset 0 0 0 2px var(--text-color);
+  cursor: pointer;
+  transition: var(--button-transition);
+}
+
+/* swapna - Secondary button hover: same fill behavior as primary */
+p:has(> strong > a) > a:not(strong a):hover,
+p:has(> strong > a) > a:not(strong a):focus {
+  background-color: var(--text-color);
+  color: var(--text-color-inverse);
+  text-decoration: none;
+}
+
+/* swapna - Standard .button class styles (for EDS decorated buttons)
+   Matches primary button style from original site */
 a.button:any-link,
 button {
   box-sizing: border-box;
@@ -256,6 +339,7 @@ button {
   transition: var(--button-transition);
 }
 
+/* swapna - Standard button hover state */
 a.button:hover,
 a.button:focus,
 button:hover,
@@ -266,6 +350,7 @@ button:focus {
   cursor: pointer;
 }
 
+/* swapna - Disabled button state */
 button:disabled,
 button:disabled:hover {
   background-color: var(--light-color);
@@ -274,7 +359,7 @@ button:disabled:hover {
   cursor: not-allowed;
 }
 
-/* Secondary button */
+/* swapna - Secondary .button class: outline only, no yellow shadow */
 a.button.secondary,
 button.secondary {
   background-color: transparent;
@@ -282,6 +367,7 @@ button.secondary {
   box-shadow: inset 0 0 0 2px var(--text-color);
 }
 
+/* swapna - Secondary .button hover */
 a.button.secondary:hover,
 a.button.secondary:focus,
 button.secondary:hover,
@@ -396,7 +482,7 @@ main > .section.dark .subheading {
   color: var(--text-color-inverse-secondary);
 }
 
-/* Inverse button styles */
+/* swapna - Inverse/dark section button styles: white border instead of black */
 main > .section.inverse a.button:any-link,
 main > .section.inverse button,
 main > .section.dark a.button:any-link,
@@ -422,6 +508,36 @@ main > .section.inverse button.secondary,
 main > .section.dark a.button.secondary,
 main > .section.dark button.secondary {
   box-shadow: inset 0 0 0 2px var(--text-color-inverse);
+}
+
+/* swapna - Inverse section primary button (strong > a): white border + yellow shadow */
+main > .section.inverse p > strong > a:any-link,
+main > .section.dark p > strong > a:any-link {
+  color: var(--text-color-inverse);
+  box-shadow: inset 0 0 0 2px var(--text-color-inverse), 4px 4px 0 0 var(--accent-color-shadow);
+}
+
+main > .section.inverse p > strong > a:hover,
+main > .section.inverse p > strong > a:focus,
+main > .section.dark p > strong > a:hover,
+main > .section.dark p > strong > a:focus {
+  background-color: var(--text-color-inverse);
+  color: var(--text-color);
+}
+
+/* swapna - Inverse section secondary button (sibling a): white border only, no shadow */
+main > .section.inverse p:has(> strong > a) > a:not(strong a),
+main > .section.dark p:has(> strong > a) > a:not(strong a) {
+  color: var(--text-color-inverse);
+  box-shadow: inset 0 0 0 2px var(--text-color-inverse);
+}
+
+main > .section.inverse p:has(> strong > a) > a:not(strong a):hover,
+main > .section.inverse p:has(> strong > a) > a:not(strong a):focus,
+main > .section.dark p:has(> strong > a) > a:not(strong a):hover,
+main > .section.dark p:has(> strong > a) > a:not(strong a):focus {
+  background-color: var(--text-color-inverse);
+  color: var(--text-color);
 }
 
 /* =========================
