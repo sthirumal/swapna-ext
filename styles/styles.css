@@ -230,6 +230,73 @@ a:hover {
    BUTTONS
    ========================= */
 
+/* Button container - paragraph with only links (EDS pattern) */
+p:has(> strong > a):has(> a) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Primary button - link inside strong */
+p > strong > a:any-link {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 8px 0;
+  border: none;
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  font-family: var(--body-font-family);
+  font-style: normal;
+  font-weight: var(--button-font-weight);
+  font-size: var(--button-font-size);
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  color: var(--text-color);
+  box-shadow: inset 0 0 0 2px var(--text-color), 4px 4px 0 0 var(--accent-color-shadow);
+  cursor: pointer;
+  transition: var(--button-transition);
+}
+
+p > strong > a:hover,
+p > strong > a:focus {
+  background-color: var(--text-color);
+  color: var(--text-color-inverse);
+  text-decoration: none;
+}
+
+/* Secondary button - sibling link not in strong */
+p:has(> strong > a) > a:any-link:not(strong a) {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 8px 0;
+  border: none;
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  font-family: var(--body-font-family);
+  font-style: normal;
+  font-weight: var(--button-font-weight);
+  font-size: var(--button-font-size);
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  color: var(--text-color);
+  box-shadow: inset 0 0 0 2px var(--text-color);
+  cursor: pointer;
+  transition: var(--button-transition);
+}
+
+p:has(> strong > a) > a:not(strong a):hover,
+p:has(> strong > a) > a:not(strong a):focus {
+  background-color: var(--text-color);
+  color: var(--text-color-inverse);
+  text-decoration: none;
+}
+
+/* Standard .button class styles */
 a.button:any-link,
 button {
   box-sizing: border-box;
@@ -422,6 +489,36 @@ main > .section.inverse button.secondary,
 main > .section.dark a.button.secondary,
 main > .section.dark button.secondary {
   box-shadow: inset 0 0 0 2px var(--text-color-inverse);
+}
+
+/* Inverse section - primary button (strong > a) */
+main > .section.inverse p > strong > a:any-link,
+main > .section.dark p > strong > a:any-link {
+  color: var(--text-color-inverse);
+  box-shadow: inset 0 0 0 2px var(--text-color-inverse), 4px 4px 0 0 var(--accent-color-shadow);
+}
+
+main > .section.inverse p > strong > a:hover,
+main > .section.inverse p > strong > a:focus,
+main > .section.dark p > strong > a:hover,
+main > .section.dark p > strong > a:focus {
+  background-color: var(--text-color-inverse);
+  color: var(--text-color);
+}
+
+/* Inverse section - secondary button (sibling a) */
+main > .section.inverse p:has(> strong > a) > a:not(strong a),
+main > .section.dark p:has(> strong > a) > a:not(strong a) {
+  color: var(--text-color-inverse);
+  box-shadow: inset 0 0 0 2px var(--text-color-inverse);
+}
+
+main > .section.inverse p:has(> strong > a) > a:not(strong a):hover,
+main > .section.inverse p:has(> strong > a) > a:not(strong a):focus,
+main > .section.dark p:has(> strong > a) > a:not(strong a):hover,
+main > .section.dark p:has(> strong > a) > a:not(strong a):focus {
+  background-color: var(--text-color-inverse);
+  color: var(--text-color);
 }
 
 /* =========================
