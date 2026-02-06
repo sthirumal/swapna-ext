@@ -14,6 +14,23 @@ import {
 } from './aem.js';
 
 /**
+ * Moves instrumentation data attributes from one element to another.
+ * Used when restructuring DOM during block decoration to preserve
+ * authoring instrumentation for Universal Editor.
+ * @param {Element} from The element to copy instrumentation from
+ * @param {Element} to The element to copy instrumentation to
+ */
+export function moveInstrumentation(from, to) {
+  if (!from || !to) return;
+  [...from.attributes].forEach(({ name, value }) => {
+    if (name.startsWith('data-aue-') || name.startsWith('data-richtext-')) {
+      to.setAttribute(name, value);
+      from.removeAttribute(name);
+    }
+  });
+}
+
+/**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
